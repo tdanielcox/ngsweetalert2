@@ -11,6 +11,7 @@ export class SwalComponent {
     @Input() public title: string;
     @Input() public text: string;
     @Input() public html: string;
+    @Input() public event: string;
     @Input() public options: SweetAlertOptions;
 
     @Output() public confirm: EventEmitter<any> = new EventEmitter();
@@ -26,6 +27,7 @@ export class SwalComponent {
             title: this.title,
             text: this.text,
             html: this.html,
+            event: this.event,
         }, this.defaultSwalOptions, this.options);
 
         const promise = swal(options);

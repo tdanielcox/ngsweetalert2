@@ -12,6 +12,7 @@ export class SwalDirective {
 
             if (options.length >= 3) {
                 this.modalOptions.type = options[2] as SweetAlertType;
+                this.event = options.event ? options.event : 'click';
             }
         } else {
             this.modalOptions = options;
@@ -23,10 +24,11 @@ export class SwalDirective {
     @Output() public cancel: EventEmitter<any> = new EventEmitter();
 
     private modalOptions: SweetAlertOptions = {};
+    private event: any = 'click';
 
     public constructor(@Inject(SWAL_DEFAULTS) private defaultSwalOptions: SweetAlertOptions) {}
 
-    @HostListener('click', ['$event']) public onHostClicked(event: MouseEvent): void {
+    @HostListener(this.event, ['$event']) public onHostClicked(event: MouseEvent): void {
         event.preventDefault();
         event.stopImmediatePropagation();
 
