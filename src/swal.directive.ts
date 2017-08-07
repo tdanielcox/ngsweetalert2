@@ -12,7 +12,10 @@ export class SwalDirective {
 
             if (options.length >= 3) {
                 this.modalOptions.type = options[2] as SweetAlertType;
-                this.event = options.event ? options.event : 'click';
+            }
+
+            if (options.length >= 4) {
+                this.event = options[3];
             }
         } else {
             this.modalOptions = options;
